@@ -1,4 +1,4 @@
-node('macosx-4') {
+node('android') {
     checkout scm
 
     def mvnHome = tool name: 'mvn'
