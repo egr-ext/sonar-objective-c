@@ -1,14 +1,11 @@
 node('macosx-4') {
     checkout scm
 
-    String jdktool = tool name: "jdk8", type: 'hudson.model.JDK'
     def mvnHome = tool name: 'mvn'
 
     /* Set JAVA_HOME, and special PATH variables. */
     List javaEnv = [
-        "PATH+MVN=${jdktool}/bin:${mvnHome}/bin",
         "M2_HOME=${mvnHome}",
-        "JAVA_HOME=${jdktool}"
     ]
 
     withEnv(javaEnv) {
