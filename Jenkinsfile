@@ -12,22 +12,18 @@ node('macosx-4') {
     ]
 
     withEnv(javaEnv) {
-    stage ('Initialize') {
-        sh '''
-            echo "PATH = ${PATH}"
-            echo "M2_HOME = ${M2_HOME}"
-        '''
-    }
-    stage ('Build') {
-        try {
-            sh 'mvn clean package'
-        } catch (e) {
-            currentBuild.result = 'FAILURE'
+        stage ('Initialize') {
+            sh '''
+                echo "PATH = ${PATH}"
+                echo "M2_HOME = ${M2_HOME}"
+            '''
+        }
+        stage ('Build') {
+            try {
+                sh 'mvn clean package'
+            } catch (e) {
+                currentBuild.result = 'FAILURE'
+            }
         }
     }
-    //stage ('Post') {
-    //    if (currentBuild.result == null || currentBuild.result == 'SUCCESS') {
-    //        junit 'target/surefire-reports/**/*.xml'
-    //    }
-    //}
 }
