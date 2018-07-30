@@ -3,7 +3,7 @@ node('macosx-4') {
 
     stage ('Build') {
         try {
-            sh 'mvn clean package'
+            sh 'mvn'
         } catch (e) {
             currentBuild.result = 'FAILURE'
         }
